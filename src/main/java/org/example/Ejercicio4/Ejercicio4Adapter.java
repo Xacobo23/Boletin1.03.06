@@ -1,10 +1,10 @@
-package org.example.Ejercicio3;
+package org.example.Ejercicio4;
 
 import com.google.gson.*;
 
 import java.lang.reflect.Type;
 
-public class Ejercicio3Adapter implements JsonSerializer<Persona>, JsonDeserializer<Persona> {
+public class Ejercicio4Adapter implements JsonSerializer<Persona>, JsonDeserializer<Persona> {
     @Override
     public Persona deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
         JsonObject jsonObject = jsonElement.getAsJsonObject();
@@ -39,6 +39,13 @@ public class Ejercicio3Adapter implements JsonSerializer<Persona>, JsonDeseriali
         }
 
         jsonObject.add("amigos", jsonArray);
+
+        JsonObject jsonProduct = new JsonObject();
+
+        jsonProduct.addProperty("nombre", persona.getProducto().getNombre());
+        jsonProduct.addProperty("precio", String.format("%.2f", persona.getProducto().getPrecio()));
+
+        jsonObject.add("producto", jsonProduct);
 
         return jsonObject;
     }

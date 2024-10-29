@@ -1,12 +1,13 @@
 package org.example.Ejercicio5;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Persona {
     private String nombre;
-    private int edad;
+    private Integer edad;
     private Direccion direccion;
-    private List<Persona> amigos;
+    private List<Persona> amigos = new ArrayList<>();
     private Producto producto;
     private List<String> hobbies;
 
@@ -17,6 +18,10 @@ public class Persona {
         this.amigos = amigos;
         this.producto = producto;
         this.hobbies = hobbies;
+    }
+
+    public Persona(String nombre) {
+        this.nombre = nombre;
     }
 
     public Persona(String nombre, int edad, Direccion direccion, List<Persona> amigos, Producto producto) {
@@ -68,10 +73,11 @@ public class Persona {
         return direccion;
     }
 
-    public String getCalle(){
+    public String getCalle() {
         return direccion.getCalle();
     }
-    public String getCiudad(){
+
+    public String getCiudad() {
         return direccion.getCiudad();
     }
 
@@ -105,7 +111,14 @@ public class Persona {
 
     @Override
     public String toString() {
-        return nombre + " (" + edad+"). \n" +
-                "Dirección: "+direccion;
+        if (edad != null) return
+                nombre + " (" + edad + "). \n" +
+                        "Dirección: " + direccion
+                        +"\nAmigos: " + amigos
+                        +"\n"+producto
+                ;
+
+        else return nombre;
+
     }
 }
